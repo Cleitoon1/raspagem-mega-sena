@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <script src="jquery-2.2.4.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+    <title>Mega Sena</title>
+</head>
+<body>
+    <div class="container">
+        <center><h1>Raspagem para a Mega da Virada</h1></center><br>
+        %for x in acumulados:
+            %if x["acumulado"] == "sim":
+                <div class="col-md-6"><center><h4>Número de sorteios acumulados {{x["quantidade"]}}</h4></center></div>
+            %else:
+                <div class="col-md-6"><center><h4>Número de sorteios não acumulados {{x["quantidade"]}}</h4></center></div>
+            %end
+        %end
+        <div class="col-md-4">
+            <table class="table table-striped">
+                <tr>
+                    <th colspan="2"><center>6 números mais sorteados<center></th>
+                </tr>
+                <tr><th>Número</th>
+                    <th>Vezes sorteado</th></tr>
+                %for dezena in dezenas_mais:
+                    <tr>
+                        <td>{{dezena["numero"]}}</td>
+                        <td> {{dezena["quantidade"]}} </td>
+                    </tr>
+                %end
+            </table>
+        </div>
+        <div class="col-md-4">
+            <table class="table table-striped">
+                <tr>
+                    <th colspan="2"><center>6 números menos sorteados<center></th>
+                </tr>
+                <tr><th>Número</th>
+                    <th>Vezes sorteado</th></tr>
+                %for dezena in dezenas_menos:
+                    <tr>
+                        <td>{{dezena["numero"]}}</td>
+                        <td> {{dezena["quantidade"]}} </td>
+                    </tr>
+                %end
+            </table>
+        </div>
+        <div class="col-md-4">
+            <table class="table table-striped">
+                <tr>
+                    <th colspan="3"><center>Número de ganhadores<center></th>
+                </tr>
+                <tr>
+                    <th>Jogo</th>
+                    <th>Número de ganhadores</th>
+                    <th>Soma dos prêmios</th>
+                </tr>
+                %for premio in dados_premios:
+                    <tr>
+                        <td>{{premio["jogo"]}}</td>
+                        <td> {{premio["ganhadores"]}} </td>
+                        <td> {{premio["valor"]}} </td>
+                    </tr>
+                %end
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <tr>
+                    <th colspan="3"><center>6 maiores prêmios ganhos</center></th>
+                </tr>
+                <tr><th>Número do Sorterio</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                </tr>
+                %for premio in premios:
+                    <tr>
+                        <td> {{premio["numero"]}} </td>
+                        <td> {{premio["valor"]}} </td>
+                        <td> {{ premio["data"]}} </td>
+                    </tr>
+                %end
+            </table>
+        </div>
+    </div>
+</body>
+</html>
